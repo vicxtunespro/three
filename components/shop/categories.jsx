@@ -20,7 +20,7 @@ export default function Categories() {
             <IoMdArrowDropright />
         </div>
       </div>
-      <div className="col-span-4 md:col-span-4 lg:col-span-3 bg-slate-100 h-72 bg-[url('/imgs/1.jpg')] bg-cover bg-center rounded overflow-hidden relative">
+      <div className="col-span-4 md:col-span-4 lg:col-span-3 bg-slate-100 h-72 bg-[url('/imgs/2.jpg')] bg-cover bg-center rounded overflow-hidden relative">
         <p className="absolute bottom-8 left-0 px-8 py-2 text-sm text-slate-100 font-bold bg-orange-700 bg-opacity-80 rounded-tr-full">Bedroom Essentials</p>
       </div>
       <div className="col-span-4 md:col-span-4 lg:col-span-3 bg-slate-100 h-72 bg-[url('/imgs/4.jpg')] bg-cover bg-center rounded overflow-hidden relative">

@@ -5,7 +5,7 @@ import DisplayProducts from '../../components/shop/displayProducts'
 
 export default function Shop() {
   return (
-    <div>
+    <div className='snap-y snap-mandatory snap-start'>
        <HeroSection/>
        <div className='p-4 md:p-8 lg:p-16'>
         <Categories/>

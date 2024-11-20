@@ -17,7 +17,7 @@ export default function HeroSection() {
             </div>
             <Button className="text-slate-50 bg-orange-700 w-36">Shop now</Button>
         </div>
-        <div className="hero-img col-span-4 md:col-span-4 py-32 md:py-58 relative overflow-x-hidden">
+        <div className="hero-img col-span-4 md:col-span-4 py-32 md:py-58 relative overflow-hidden">
                 <Image src={"/imgs/hero-img.png"} width={2000} height={500} className='absolute w-[100rem] md:left-28 lg:left-38 top-10 md:top-64 scale-90 md:scale-150 lg:scale-125'></Image>
         </div>
     </div>
