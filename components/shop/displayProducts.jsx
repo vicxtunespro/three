@@ -11,11 +11,8 @@ import Products from '@/app/data/products';
 export default function DisplayProducts() {
   const [category, setCategory] = useState('Latest');
 
-  const handleCategory = (type) => {
-      setCategory(type);
-  }
-
-  DisplayProducts = Products.filter((products) => products.category == category);
+  // filtering 
+  const filteredProducts = Products.filter((products) => products.category == category);
 
   return (
     <div className=''>
@@ -24,7 +21,7 @@ export default function DisplayProducts() {
         />
         <div className='grid grid-cols-12 gap-4 w-full'>
           {
-            DisplayProducts.map((product) => (
+            filteredProducts.map((product) => (
               <Card
               key={product.id}
               id = {product.id}
@@ -37,6 +34,13 @@ export default function DisplayProducts() {
               rating={product.rating}
               />
             ))
+          }
+
+          {/* if no item */}
+          {
+            filteredProducts.length == 0 && (
+                <div>No item found</div>
+              )
           }
         </div>
     </div>
@@ -52,9 +56,9 @@ function CardHeder({setCategory}){
           </div>
       </div>
         <div className='hidden md:col-span-6 md:flex justify-evenly items-center text-sm list-none'>
-            <li onClick={setCategory('Latest')} className='cursor-pointer'>LATEST PRODUCTS</li>
-            <li onClick={setCategory('Top Rating')} className='cursor-pointer'>TOP RATING</li>
-            <li onClick={setCategory('Best Selling')} className='cursor-pointer'>BEST SELLING</li>
+            <li onClick={() => setCategory('Latest')} className='cursor-pointer hover:underline'>LATEST PRODUCTS</li>
+            <li onClick={() => setCategory('Top Rating')} className='cursor-pointer hover:underline'>TOP RATING</li>
+            <li onClick={() => setCategory('Best Selling')} className='cursor-pointer hover:underline'>BEST SELLING</li>
         </div>
         <FilterBtn/>
         <div className='col-span-5 md:col-span-3 text-right'>
