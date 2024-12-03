@@ -60,7 +60,7 @@ function CardHeder({setCategory}){
             <li onClick={() => setCategory('Top Rating')} className='cursor-pointer hover:underline'>TOP RATING</li>
             <li onClick={() => setCategory('Best Selling')} className='cursor-pointer hover:underline'>BEST SELLING</li>
         </div>
-        <FilterBtn/>
+        <FilterBtn setCategory={setCategory}/>
         <div className='col-span-5 md:col-span-3 text-right'>
             <button className='py-1 px-2 border-2'>All products</button>
         </div>
@@ -73,7 +73,7 @@ function Card({id, name, price, discount, rating, reviews, image, category}){
     <Link href={`/shop/products/product-details/${id}`} className='h-fit col-span-6 md:col-span-3'>
       <div className='h-40 md:h-56 bg-slate-200 flex items-center relative overflow-hidden'>
         <Image src={image} width={1000} height={800} alt="Product"></Image>
-        <span className='py-0.5 px-2 m-1 bg-rose-500 text-xs text-slate-100 absolute right-0 top-0'>{discount}%</span>
+        <span className='py-0.5 px-2 m-1 bg-rose-500 text-xs animate-pulse text-slate-100 absolute right-0 top-0'>{discount}%</span>
       </div>
       <div className='flex flex-col gap-1 py-4  text-xs md:text-md'>
         <div className='text-slate-500'>⭐⭐⭐⭐⭐ ({reviews} Reviews)</div>
