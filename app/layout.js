@@ -1,5 +1,8 @@
 import localFont from "next/font/local";
 import "./globals.css";
+import { NavigationMenu } from "@radix-ui/react-navigation-menu";
+import NavBar from "@/components/nav";
+import MobileNavBar from "@/components/mobileNav";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -21,8 +24,10 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased relative`}
       >
+        <NavBar/>
+        <MobileNavBar/>
         {children}
       </body>
     </html>
