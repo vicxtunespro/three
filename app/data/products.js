@@ -14,7 +14,7 @@ const Products = [
 
   // New Products
   { id: 13, name: 'Gaming chair', price: 20000, discount: -10, rating: 4.8, reviews: 18, image: '/imgs/gaming-chair.jpg', category: 'Best Selling' },
-  { id: 14, name: 'Patio set', price: 55000, discount: -20, rating: 5, reviews: 22, image: '/imgs/patio-set.jpg', category: 'Latest' },
+  { id: 14, name: 'Patio set', price: 55000, discount: -20, rating: 3.5, reviews: 22, image: '/imgs/patio-set.jpg', category: 'Latest' },
   { id: 15, name: 'Kids bunk bed', price: 45000, discount: -15, rating: 4.3, reviews: 6, image: '/imgs/kids-bunk-bed.jpg', category: 'Top Rating' },
   { id: 16, name: 'Rocking chair', price: 15000, discount: -10, rating: 4.7, reviews: 12, image: '/imgs/rocking-chair.jpg', category: 'Best Selling' },
   { id: 17, name: 'Sectional sofa', price: 75000, discount: -30, rating: 5, reviews: 25, image: '/imgs/sectional-sofa.jpg', category: 'Latest' },

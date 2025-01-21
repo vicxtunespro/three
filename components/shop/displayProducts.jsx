@@ -1,23 +1,35 @@
 'use client'
 
 import Image from 'next/image';
-import React, { useState } from 'react'
+import React, { useState, useReducer } from 'react'
 import FilterBtn from './filterBtn';
 import Link from 'next/link';
 import Products from '@/app/data/products';
 
-
+function filterReducer(state, action){
+  switch(action.type){
+    case 'ALL':
+      return state;
+    case 'LATEST':
+      return Products.filter((products) => products.category === "Latest");
+    case 'BEST SELLING':
+      return Products.filter((products) => products.category === "Best Selling");
+    case 'TOP RATING':
+      return Products.filter((products) => products.rating >= 4.5);
+    default:
+      return state;
+  }
+}
 
 export default function DisplayProducts() {
-  const [category, setCategory] = useState('Latest');
 
-  // filtering 
-  const filteredProducts = Products.filter((products) => products.category == category);
+  const [filteredProducts, dispatch] = useReducer(filterReducer, Products)
+
 
   return (
     <div className=''>
         <CardHeder
-        setCategory = {setCategory}
+        dispatch={dispatch}
         />
         <div className='grid grid-cols-12 gap-4 w-full'>
           {
@@ -47,7 +59,7 @@ export default function DisplayProducts() {
   )
 }
 
-function CardHeder({setCategory}){
+function CardHeder({setCategory, dispatch}){
   return(
     <div className='grid grid-cols-12 my-16'>
       <div className='col-span-5 md:col-span-3'>
@@ -56,13 +68,13 @@ function CardHeder({setCategory}){
           </div>
       </div>
         <div className='hidden md:col-span-6 md:flex justify-evenly items-center text-sm list-none'>
-            <li onClick={() => setCategory('Latest')} className='cursor-pointer hover:underline'>LATEST PRODUCTS</li>
-            <li onClick={() => setCategory('Top Rating')} className='cursor-pointer hover:underline'>TOP RATING</li>
-            <li onClick={() => setCategory('Best Selling')} className='cursor-pointer hover:underline'>BEST SELLING</li>
+            <li onClick={() => dispatch({type: 'LATEST'})} className='cursor-pointer hover:underline'>LATEST PRODUCTS</li>
+            <li onClick={() => dispatch({type: 'TOP RATING'})} className='cursor-pointer hover:underline'>TOP RATING</li>
+            <li onClick={() => dispatch({type: 'BEST SELLING'})} className='cursor-pointer hover:underline'>BEST SELLING</li>
         </div>
-        <FilterBtn setCategory={setCategory}/>
+        <FilterBtn dispatch = {dispatch}/>
         <div className='col-span-5 md:col-span-3 text-right'>
-            <button className='py-1 px-2 border-2'>All products</button>
+            <button onClick={() => dispatch({type: 'ALL'})} className=' cursor-pointer py-1 px-2 border-2'>All products</button>
         </div>
     </div>
   );

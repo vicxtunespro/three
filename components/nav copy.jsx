@@ -1,31 +1,20 @@
-'use client';
+'use client'
 import React, { useState } from "react";
-import { useSession, signIn, signOut } from "next-auth/react"; // Import for session management
-import {
-  IoMdHeart,
-  MdAccountCircle,
-  MdHelpOutline,
-  MdOutlineAccountCircle,
-  MdOutlineSave,
-  MdOutlineShoppingBag,
-  MdShoppingCart,
-} from "react-icons/md";
+import { IoMdHeart } from "react-icons/io";
+import { MdAccountCircle, MdHelpOutline, MdOutlineAccountCircle, MdOutlineSave, MdOutlineShoppingBag, MdShop, MdShoppingCart } from "react-icons/md";
 
-export default function NavBar({ disableDropdown }) {
+export default function NavBar({disableDropdown}) {
   const [isAccountDropdownOpen, setIsAccountDropdownOpen] = useState(false);
   const [isHelpDropdownOpen, setIsHelpDropdownOpen] = useState(false);
 
-  const { data: session } = useSession(); // Retrieve session data
-
-  const handleHelp = () => {
+  const handleHelp = () =>{
     setIsAccountDropdownOpen(false);
     setIsHelpDropdownOpen(!isHelpDropdownOpen);
-  };
-
-  const handleAccount = () => {
+  }
+  const handleAccount = () =>{
     setIsHelpDropdownOpen(false);
     setIsAccountDropdownOpen(!isAccountDropdownOpen);
-  };
+  }
 
   return (
     <header className="sticky top-0 z-50 flex items-center justify-between md:px-4 lg:px-16 py-4 bg-white shadow-md">
@@ -57,64 +46,48 @@ export default function NavBar({ disableDropdown }) {
           placeholder="Search"
           className="flex-grow p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-orange-500"
         />
-        <button className="px-4 bg-orange-500 text-white rounded">SEARCH</button>
+        <button className="px-4 bg-orange-500 text-white rounded">
+          SEARCH
+        </button>
       </div>
 
       {/* Right Side: Account, Help, and Cart */}
       <div className="flex items-center space-x-2">
-        {/* Account Section */}
+        {/* Account Dropdown */}
         <div className="relative">
-          {session ? (
-            // If user is logged in
-            <>
-              <button
-                className="flex items-center text-gray-500 hover:bg-slate-100 py-2 px-2 rounded cursor-pointer"
-                onClick={handleAccount}
-              >
-                <MdOutlineAccountCircle className="size-6" />
-                <span className="ml-2 font-semibold hidden lg:block">
-                  {session.user.name || "Profile"}
-                </span>
-              </button>
-              {isAccountDropdownOpen && (
-                <div
-                  onMouseLeave={handleAccount}
-                  className="absolute -left-24 lg:-left-8 mt-2 w-48 bg-white border border-gray-100 rounded shadow-lg z-30"
-                >
-                  <ul>
-                    <li className="flex items-center gap-2 px-4 py-2 text-gray-700 hover:bg-gray-100">
-                      <MdAccountCircle />
-                      My Account
-                    </li>
-                    <li className="flex items-center gap-2 px-4 py-2 text-gray-700 hover:bg-gray-100">
-                      <MdOutlineShoppingBag />
-                      Orders
-                    </li>
-                    <li className="flex items-center gap-2 px-4 py-2 text-gray-700 hover:bg-gray-100">
-                      <MdOutlineSave />
-                      Saved Items
-                    </li>
-                  </ul>
-                  <div className="w-full p-2">
-                    <button
-                      onClick={() => signOut()}
-                      className="bg-red-500 hover:bg-red-700 block w-full rounded px-4 py-2 text-center text-slate-100 font-semibold"
-                    >
-                      SIGN OUT
-                    </button>
-                  </div>
-                </div>
-              )}
-            </>
-          ) : (
-            // If user is not logged in
-            <button
-              onClick={() => signIn()}
-              className="flex items-center text-gray-500 hover:bg-slate-100 py-2 px-2 rounded cursor-pointer"
-            >
-              <MdOutlineAccountCircle className="size-6" />
-              <span className="ml-2 font-semibold hidden lg:block">Sign In</span>
-            </button>
+          <button
+            className="flex items-center text-gray-500 hover:bg-slate-100 py-2 px-2 rounded cursor-pointer"
+            onClick={handleAccount}
+          >
+            <MdOutlineAccountCircle className="size-6"/>
+            <span className="ml-2 font-semibold hidden lg:block">Account</span>
+          </button>
+          {isAccountDropdownOpen && (
+            <div
+              onMouseLeave={handleAccount} 
+              className="absolute -left-24 lg:-left-8 mt-2 w-48 bg-white border border-gray-100 rounded shadow-lg z-30">
+              {/* Dropdown items */}
+              <div className="w-full p-2">
+                <button className="bg-orange-500 hover:bg-orange-700 block w-full rounded px-4 py-2 text-center text-slate-100 font-semibold">
+                  SIGN IN
+                </button>
+              </div>
+              <hr />
+              <ul>
+                <li className="flex items-center gap-2 px-4 py-2 text-gray-700 hover:bg-gray-100">
+                  <MdAccountCircle/>
+                  My Account
+                </li>
+                <li className="flex items-center gap-2 px-4 py-2 text-gray-700 hover:bg-gray-100">
+                  <MdOutlineShoppingBag/>
+                  Orders
+                </li>
+                <li className="flex items-center gap-2 px-4 py-2 text-gray-700 hover:bg-gray-100">
+                  <MdOutlineSave/>
+                  Saved Items
+                </li>
+              </ul>
+            </div>
           )}
         </div>
 
@@ -124,14 +97,13 @@ export default function NavBar({ disableDropdown }) {
             className="flex items-center text-gray-500 hover:bg-slate-100 py-2 px-2 rounded cursor-pointer"
             onClick={handleHelp}
           >
-            <MdHelpOutline className="size-6" />
+            <MdHelpOutline className="size-6"/>
             <span className="ml-2 font-semibold hidden lg:block">Help</span>
           </button>
           {isHelpDropdownOpen && (
-            <div
+            <div 
               onMouseLeave={handleHelp}
-              className="absolute -left-36 lg:-left-8 mt-2 w-56 bg-white border border-gray-200 rounded-md shadow-lg"
-            >
+              className="absolute -left-36 lg:-left-8 mt-2 w-56 bg-white border border-gray-200 rounded-md shadow-lg">
               <ul>
                 <li className="px-4 py-2 text-gray-700 hover:bg-gray-100">
                   Help Center
@@ -163,10 +135,10 @@ export default function NavBar({ disableDropdown }) {
 
         {/* Cart Icon */}
         <button className="flex items-center text-gray-500 cursor-pointer hover:bg-slate-100 py-2 px-2 rounded">
-          <MdShoppingCart className="size-6" />
+          <MdShoppingCart className="size-6"/>
           <span className="ml-2 font-semibold hidden lg:block">Cart</span>
         </button>
       </div>
     </header>
   );
-}
+};
