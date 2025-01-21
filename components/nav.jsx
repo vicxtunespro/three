@@ -28,7 +28,7 @@ export default function NavBar({ disableDropdown }) {
   };
 
   return (
-    <header className="sticky top-0 z-50 flex items-center justify-between md:px-4 lg:px-16 py-4 bg-white shadow-md">
+    <div className="hidden sticky top-0 z-50 md:flex items-center justify-between md:px-4 lg:px-16 py-4 bg-white shadow-md">
       {/* Left Side: Logo and Hamburger Menu */}
       <div className="flex items-center gap-8">
         <button className="text-gray-500 focus:outline-none">
@@ -167,6 +167,6 @@ export default function NavBar({ disableDropdown }) {
           <span className="ml-2 font-semibold hidden lg:block">Cart</span>
         </button>
       </div>
-    </header>
+    </div>
   );
 }
